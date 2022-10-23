@@ -8,12 +8,27 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  List<String> question = [
-    'thats question one',
-    'thats question two',
-    'thats question three',
-    'thats question four',
-    'thats question five',
+  final List<Map> questions = const [
+    {
+      'QuestionText': 'whats you favorite color ?',
+      'answers': ['white', 'red', 'pink', 'blue'],
+    },
+    {
+      'QuestionText': 'whats you favorite city ?',
+      'answers': ['kerman', 'shiraz', 'isfahan', 'Yazd'],
+    },
+    {
+      'QuestionText': 'whats you favorite car company ?',
+      'answers': ['bmw', 'ferrari', 'benz', 'irankhodro'],
+    },
+    {
+      'QuestionText': 'whats you favorite habit ?',
+      'answers': ['movie', 'music', 'book'],
+    },
+    {
+      'QuestionText': 'whats you favorite animal ?',
+      'answers': ['dog', 'cat', 'hours', 'sheep'],
+    },
   ];
 
   int _questionIndex = 0;
@@ -28,15 +43,24 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('text')),
-      body: Column(
-        children: <Widget>[
-          Question(question[_questionIndex]),
-          const Divider(thickness: 10.0),
-          AnswerButton(selectedButton: _answerQuestions),
-          AnswerButton(selectedButton: _answerQuestions),
-          AnswerButton(selectedButton: _answerQuestions),
-        ],
-      ),
+      body: _questionIndex < questions.length
+          ? Column(
+              children: <Widget>[
+                Question(questions[_questionIndex]['QuestionText'] as String),
+                const Divider(thickness: 10.0),
+                ...(questions[_questionIndex]['answers'] as List<String>)
+                    .map(
+                      (answer) => AnswerButton(
+                        selectedButton: _answerQuestions,
+                        answer: answer,
+                      ),
+                    )
+                    .toList(),
+              ],
+            )
+          : const Center(
+              child: Text('DONE'),
+            ),
     );
   }
 }
