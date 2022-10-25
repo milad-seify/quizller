@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_create/quiz.dart';
-import 'package:flutter_create/result.dart';
+import 'package:flutter_create/screens/result.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -44,9 +44,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepOrangeAccent[100],
       appBar: AppBar(
-        title: const Text('LIKE'),
+        title: const Text(
+          'LIKE',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         backgroundColor: Colors.deepOrangeAccent,
       ),

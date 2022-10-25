@@ -13,7 +13,7 @@ class Question extends StatelessWidget {
       margin: const EdgeInsets.all(20.0),
       padding: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        color: Colors.blueGrey.shade300,
+        color: Colors.deepOrange.shade400,
         border: kQuestionBorder,
       ),
       child: Text(

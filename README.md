@@ -1,6 +1,6 @@
 # flutter_create
 
-A new Flutter project.
+This program is for those who want to start fresh and to practice and check the simple features of Flutter.
 
 ## Getting Started
 

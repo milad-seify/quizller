@@ -9,14 +9,18 @@ class AnswerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 200.0,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
-          elevation: 7.0,
+          backgroundColor: Colors.red.shade300,
+          elevation: 10.0,
         ),
         onPressed: selectedButton,
-        child: Text(answer),
+        child: Text(
+          answer,
+          style: const TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }
