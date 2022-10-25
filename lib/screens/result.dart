@@ -10,8 +10,17 @@ class Result extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text("DONE"),
+            const Text("DONE!"),
+            const Divider(
+              thickness: 2.0,
+              color: Colors.red,
+              indent: 30.0,
+              endIndent: 30.0,
+              height: 50.0,
+            ),
             TextButton(
+              style: TextButton.styleFrom(
+                  elevation: 10.0, backgroundColor: Colors.red.shade300),
               onPressed: () {
                 _showToast(context);
                 Navigator.push(
@@ -19,7 +28,10 @@ class Result extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => const MainScreen()));
               },
-              child: const Text('RESTART'),
+              child: const Text(
+                'RESTART',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ]),
     );
