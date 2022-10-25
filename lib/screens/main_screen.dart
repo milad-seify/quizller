@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_create/question.dart';
-import 'package:flutter_create/answer_button.dart';
+import 'package:flutter_create/quiz.dart';
+import 'package:flutter_create/result.dart';
 
-class Quiz extends StatefulWidget {
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
-  State<Quiz> createState() => _QuizState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _QuizState extends State<Quiz> {
-  final List<Map> questions = const [
+class _MainScreenState extends State<MainScreen> {
+  int _questionIndex = 0;
+
+  void _answerQuestions() {
+    setState(() {
+      _questionIndex += 1;
+    });
+  }
+
+  final List<Map<String, dynamic>> _questions = const [
     {
       'QuestionText': 'whats you favorite color ?',
       'answers': ['white', 'red', 'pink', 'blue'],
@@ -31,47 +41,21 @@ class _QuizState extends State<Quiz> {
     },
   ];
 
-  int _questionIndex = 0;
-
-  void _answerQuestions() {
-    setState(() {
-      _questionIndex += 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('text')),
-      body: _questionIndex < questions.length
-          ? Column(
-              children: <Widget>[
-                Question(questions[_questionIndex]['QuestionText'] as String),
-                const Divider(thickness: 10.0),
-                ...(questions[_questionIndex]['answers'] as List<String>)
-                    .map(
-                      (answer) => AnswerButton(
-                        selectedButton: _answerQuestions,
-                        answer: answer,
-                      ),
-                    )
-                    .toList(),
-              ],
-            )
-          : const Center(
-              child: Text('DONE'),
-            ),
+      backgroundColor: Colors.deepOrangeAccent[100],
+      appBar: AppBar(
+        title: const Text('LIKE'),
+        centerTitle: true,
+        backgroundColor: Colors.deepOrangeAccent,
+      ),
+      body: _questionIndex < _questions.length
+          ? Quiz(
+              questions: _questions,
+              answerQuestions: _answerQuestions,
+              questionIndex: _questionIndex)
+          : const Result(),
     );
   }
-}
-
-void _showToast(BuildContext context) {
-  final scaffold = ScaffoldMessenger.of(context);
-  scaffold.showSnackBar(
-    SnackBar(
-      content: const Text('Added to favorite'),
-      action: SnackBarAction(
-          label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-    ),
-  );
 }
