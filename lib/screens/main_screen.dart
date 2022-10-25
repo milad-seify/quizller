@@ -11,8 +11,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _questionIndex = 0;
+  int _totalScore = 0;
 
-  void _answerQuestions() {
+  void _answerQuestions(int score) {
+    _totalScore += score;
+
     setState(() {
       _questionIndex += 1;
     });
@@ -21,23 +24,47 @@ class _MainScreenState extends State<MainScreen> {
   final List<Map<String, dynamic>> _questions = const [
     {
       'QuestionText': 'whats you favorite color ?',
-      'answers': ['white', 'red', 'pink', 'blue'],
+      'answers': [
+        {'text': 'white', 'score': 2},
+        {'text': 'red', 'score': 1},
+        {'text': 'pink', 'score': 4},
+        {'text': 'blue', 'score': 6}
+      ],
     },
     {
       'QuestionText': 'whats you favorite city ?',
-      'answers': ['kerman', 'shiraz', 'isfahan', 'Yazd'],
+      'answers': [
+        {'text': 'Kerman', 'score': 2},
+        {'text': 'Yazd', 'score': 2},
+        {'text': 'Isfahan', 'score': 2},
+        {'text': 'Shiraz', 'score': 2}
+      ],
     },
     {
       'QuestionText': 'whats you favorite car company ?',
-      'answers': ['bmw', 'ferrari', 'benz', 'irankhodro'],
+      'answers': [
+        {'text': 'bmw', 'score': 5},
+        {'text': 'ferrari', 'score': 2},
+        {'text': 'benz', 'score': 3},
+        {'text': 'irankhodro', 'score': 1}
+      ],
     },
     {
       'QuestionText': 'whats you favorite habit ?',
-      'answers': ['movie', 'music', 'book'],
+      'answers': [
+        {'text': 'Music', 'score': 7},
+        {'text': 'Movie', 'score': 6},
+        {'text': 'Book', 'score': 8}
+      ],
     },
     {
       'QuestionText': 'whats you favorite animal ?',
-      'answers': ['dog', 'cat', 'hours', 'sheep'],
+      'answers': [
+        {'text': 'Cat', 'score': 3},
+        {'text': 'Dog', 'score': 3},
+        {'text': 'Hours', 'score': 5},
+        {'text': 'Sheep', 'score': 2}
+      ],
     },
   ];
 
@@ -58,7 +85,9 @@ class _MainScreenState extends State<MainScreen> {
               questions: _questions,
               answerQuestions: _answerQuestions,
               questionIndex: _questionIndex)
-          : const Result(),
+          : Result(
+              result: _totalScore,
+            ),
     );
   }
 }
